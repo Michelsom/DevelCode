@@ -7,8 +7,8 @@ import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 import {Input} from '../../components/Input';
 import {Pencil} from '../../Assets/Icons';
-import {ImageLibraryOptions, openPicker} from '../../components/ImagePicker';
 import * as ImagePicker from 'react-native-image-picker';
+import {ImageLibraryOptions} from 'react-native-image-picker';
 
 export const Profile = ({route}: any) => {
   const [data, setData] = useState(route.params.item);
@@ -136,11 +136,11 @@ export const Profile = ({route}: any) => {
             source={{uri: `data:image/jpeg;base64,${data.userImage}`}}
           />
           <S.Label>Nome de Usuário</S.Label>
-          <S.UserName>{data.userName}</S.UserName>
+          <S.UserName numberOfLines={1}>{data.userName}</S.UserName>
           <S.Label>Data de nascimento</S.Label>
-          <S.BirthDate>{data.userBirthDate}</S.BirthDate>
+          <S.BirthDate numberOfLines={1}>{data.userBirthDate}</S.BirthDate>
           <S.Label>Código do usuário</S.Label>
-          <S.UserCode>{data.userCode}</S.UserCode>
+          <S.UserCode numberOfLines={1}>{data.userCode}</S.UserCode>
         </S.Box>
       )}
       <S.BoxButton>
@@ -151,18 +151,18 @@ export const Profile = ({route}: any) => {
               type="solid"
               color="secondaryColor"
               handleButton={() => {
-                if(image && name && code && birthDate){
-                updateData(data.id);}
-                else{
+                if (image && name && code && birthDate) {
+                  updateData(data.id);
+                } else {
                   Alert.alert('Preencha todos os campos');
                 }
               }}
-              width={45}
+              width={100}
             />
             <GlobalButton
               text="Cancelar"
-              type="transparent"
-              width={45}
+              type="outline"
+              width={100}
               color="secondaryColor"
               handleButton={() => {
                 setUpdate(!update);
@@ -178,12 +178,12 @@ export const Profile = ({route}: any) => {
               handleButton={() => {
                 setUpdate(!update);
               }}
-              width={45}
+              width={100}
             />
             <GlobalButton
               text="Excluir Perfil"
-              type="solid"
-              width={45}
+              type="outline"
+              width={100}
               color="secondaryColor"
               handleButton={() => {
                 removeData(route.params.item.id);

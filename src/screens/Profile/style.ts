@@ -3,22 +3,24 @@ import styled from 'styled-components/native';
 export const Container = styled.SafeAreaView`
   height: ${Dimensions.get('window').height};
   align-items: center;
-  background-color: ${(props) => props.theme.colors.lightColor};
+  background-color: ${props => props.theme.colors.lightColor};
 `;
 export const UserName = styled.Text`
-  color: #000;
-  font-size: 25px;
-
+  color: ${props => props.theme.colors.secondaryColor};
+  font-family: ${props => props.theme.fonts.poppinsMedium};
+  font-size: 30px;
   width: 100%;
 `;
 export const BirthDate = styled.Text`
-  color: #000;
+  color: ${props => props.theme.colors.secondaryColor};
+  font-family: ${props => props.theme.fonts.poppinsSemiBold};
   width: 100%;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 5px;
 `;
 export const UserCode = styled.Text`
-  color: #000;
+  color: ${props => props.theme.colors.secondaryColor};
+  font-family: ${props => props.theme.fonts.poppinsSemiBold};
   font-size: 20px;
   width: 100%;
   border-radius: 5px;
@@ -39,14 +41,15 @@ export const Title = styled.Text`
 `;
 export const Label = styled.Text`
   color: #bbb;
+  font-family: ${props => props.theme.fonts.poppinsLight};
   width: 100%;
   padding: 5px 0;
   font-size: 13px;
 `;
 export const BoxButton = styled.View`
   align-items: center;
+  padding:  0 20px;
   justify-content: space-around;
-  flex-direction: row;
   width: 100%;
 `;
 

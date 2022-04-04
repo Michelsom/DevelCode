@@ -1,20 +1,28 @@
+import {BackHandler, FlatList, Image, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {FlatList, Image, Text, View} from 'react-native';
+
+import * as Global from '../../global/hocks';
 import * as S from './style';
+
+import {HeaderHome} from '../../components/Header';
+
 import firestore from '@react-native-firebase/firestore';
-import { HeaderHome } from '../../components/Header';
 
 export const Home = () => {
-  const {navigate} = useNavigation();
+  const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState([]);
+  const {navigate} = useNavigation();
+
   const renderItem = (item: any) => {
-    console.log(item);
     return (
-      <View style={{padding: 20}}>
+      <S.ContainerFlatList>
         <S.Description
           onPress={() => {
-            navigate('Profile' as never, {item: item.item, id:item.id} as never);
+            navigate(
+              'Profile' as never,
+              {item: item.item, id: item.id} as never,
+            );
           }}>
           <View
             style={{
@@ -28,42 +36,61 @@ export const Home = () => {
             />
           </View>
           <View>
-            <S.UserName>{item.item.userName}</S.UserName>
+            <S.UserName numberOfLines={1}>{item.item.userName}</S.UserName>
             <S.BirthDate>{item.item.userBirthDate}</S.BirthDate>
             <S.UserCode>{item.item.userCode}</S.UserCode>
           </View>
         </S.Description>
-      </View>
+      </S.ContainerFlatList>
     );
   };
-  function deleteData(id: any) {
-    firestore().collection('DataProfile').doc(id).delete();
-  }
 
   useEffect(() => {
-    firestore()
-      .collection('DataProfile')
-      .onSnapshot(query => {
-        const list = [] as any;
-        query.forEach(doc => {
-          list.push({
-            ...doc.data(),
-            id: doc.id,
+    BackHandler.addEventListener('hardwareBackPress', () => true);
+  }, []);
+
+  useEffect(() => {
+    function getData() {
+      setLoading(true);
+      firestore()
+        .collection('DataProfile')
+        .onSnapshot(query => {
+          const list = [] as any;
+          query.forEach(doc => {
+            list.push({
+              ...doc.data(),
+              id: doc.id,
+            });
           });
+          setData(list);
         });
-        setData(list);
-      });
+    }
+    getData();
+    setLoading(false);
   }, []);
   return (
     <S.Container>
-     <HeaderHome text='Usuários'/>
-      <FlatList data={data} renderItem={renderItem} />
+      <HeaderHome text="Usuários" />
+      {loading ? (
+        <Global.GlobalStyleActivityIndicator>
+          <Global.GlobalActivityIndicator />
+          <Text>Carregando...</Text>
+        </Global.GlobalStyleActivityIndicator>
+      ) : (
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          ListFooterComponent={() => {
+            return <View style={{height: 70}}></View>;
+          }}
+        />
+      )}
       <S.Box>
         <S.ButtonAddNewRegister
           onPress={() => {
             navigate('Register' as never);
           }}>
-          <Text style={{color: '#fff', fontSize: 28, marginBottom: 5}}>+</Text>
+          <Text style={{color: '#fff', fontSize: 38, marginBottom: 5}}>+</Text>
         </S.ButtonAddNewRegister>
       </S.Box>
     </S.Container>

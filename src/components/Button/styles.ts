@@ -15,10 +15,7 @@ interface ButtonProps {
 }
 
 const colors = [
-  {id: 1, name: 'primaryColor', color: theme.colors.primaryColor},
   {id: 2, name: 'secondaryColor', color: theme.colors.secondaryColor},
-  {id: 3, name: 'disabledColor', color: theme.colors.disableText},
-  {id: 4, name: 'dangerColor', color: theme.colors.error},
   {id: 5, name: 'defaultColor', color: theme.colors.defaultTextDescription},
 ];
 
@@ -48,7 +45,7 @@ export const Button = styled.TouchableOpacity.attrs({
         : theme.colors.lightColor
       : props.type === 'transparent'
       ? 'transparent'
-      : theme.colors.disableButton};
+      : theme.colors.disableColor};
 `;
 
 export const TextButton = styled.Text<ButtonProps>`
