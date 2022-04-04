@@ -16,8 +16,8 @@ export const TextTitle = styled.Text`
 export const Description = styled.TouchableOpacity`
   width: 100%;
   height: 100px;
-  border-radius: 16px;
-  elevation: 3;
+  border-radius: 8px;
+  elevation: 2;
   background: ${props => props.theme.colors.backgroundColor};
   align-items: center;
   justify-content: space-around;
@@ -36,23 +36,22 @@ export const ButtonsContainer = styled.View`
 export const UserName = styled.Text`
   color: ${props => props.theme.colors.secondaryColor};
   font-size: 25px;
-  font-family: ${props => props.theme.fonts.poppinsSemiBold};
+  font-family: ${props => props.theme.fonts.poppinsMedium};
   width: 200px;
   padding: 0 5px;
   border-radius: 5px;
 `;
 export const BirthDate = styled.Text`
   color: ${props => props.theme.colors.colorPrimaryText};
-
+  font-family: ${props => props.theme.fonts.poppinsRegular};
   font-size: 15px;
   width: 200px;
-
   padding: 0 5px;
   border-radius: 5px;
 `;
 export const UserCode = styled.Text`
   color: ${props => props.theme.colors.colorPrimaryText};
-
+  font-family: ${props => props.theme.fonts.poppinsRegular};
   font-size: 15px;
   width: 200px;
 
@@ -76,4 +75,8 @@ export const TitleText = styled.Text`
   width: 100%;
   font-size: 20px;
   color: ${props => props.theme.colors.secondaryColor};
+`;
+
+export const ContainerFlatList =styled.View`
+padding: 10px 20px;
 `;

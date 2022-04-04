@@ -1,7 +1,8 @@
+import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
-  width: 100%;
+  width: ${Dimensions.get('window').width}px;
   justify-content: center;
   height: 60px;
   elevation: 0.5;
@@ -14,11 +15,11 @@ export const ButtonContainer = styled.TouchableOpacity`
   height: 50px;
   align-items: center;
   justify-content: center;
-
 `;
-export const Title= styled.Text`
-text-align: center;
-width: 200px;
-font-size: 20px;
-color:${props => props.theme.colors.secondaryColor};
+export const Title = styled.Text`
+  text-align: center;
+  width: 200px;
+  font-size: 20px;
+  font-family: ${props => props.theme.fonts.poppinsMedium};
+  color: ${props => props.theme.colors.secondaryColor};
 `;

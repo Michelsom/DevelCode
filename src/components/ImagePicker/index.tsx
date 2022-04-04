@@ -25,8 +25,7 @@ export interface ImageLibraryOptions {
   mediaType: string;
   maxWidth?: number;
   maxHeight?: number;
-  quality?: PhotoQuality;
-  videoQuality?: AndroidVideoOptions | iOSVideoOptions;
+  quality?: number;
   includeBase64?: boolean;
   includeExtra?: boolean;
 }

@@ -13,7 +13,6 @@ interface ButtonProps {
     | 'dangerColor'
     | 'defaultColor';
   loading?: boolean;
-  gradient?: boolean;
   disable?: boolean;
   width?: number;
   transparent?: boolean;
@@ -21,10 +20,8 @@ interface ButtonProps {
 }
 
 const colors = [
-  {id: 1, name: 'primaryColor', color: theme.colors.primaryColor},
   {id: 2, name: 'secondaryColor', color: theme.colors.secondaryColor},
   {id: 3, name: 'disabledColor', color: theme.colors.disableColor},
-  {id: 4, name: 'dangerColor', color: theme.colors.error},
   {id: 5, name: 'defaultColor', color: theme.colors.defaultTextDescription},
 ];
 
@@ -32,7 +29,6 @@ export const GlobalButton = ({
   color,
   text,
   type,
-  gradient,
   loading,
   width,
   handleButton,

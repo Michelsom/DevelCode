@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, TouchableOpacity} from 'react-native';
+import {Alert, TouchableOpacity, View} from 'react-native';
 import {Input} from '../../components/Input';
 import * as S from './style';
 import * as ImagePicker from 'react-native-image-picker';
@@ -9,6 +9,7 @@ import firestore from '@react-native-firebase/firestore';
 import {ImageLibraryOptions} from '../../components/ImagePicker';
 import {Header} from '../../components/Header';
 import {Pencil} from '../../Assets/Icons';
+import { maskDate } from '../../utils/masks';
 
 export const Register = () => {
   const [name, setName] = React.useState('');
@@ -105,7 +106,7 @@ export const Register = () => {
           value={birthDate}
           placeholder="24/09/1997"
           setValue={e => {
-            setBirthDate(e);
+            setBirthDate(maskDate(e));
           }}
         />
         <Input
@@ -120,26 +121,27 @@ export const Register = () => {
         <GlobalButton
           handleButton={() => {
             if (name && code && birthDate && image) {
+              console.log(name, code, birthDate, image);
               sendData();
-              navigate('AreaLoadingApp' as never);
+              navigate('Home' as never);
             } else {
               Alert.alert('Preencha todos os campos');
             }
           }}
           width={100}
           type="solid"
-          text={'Cadastrar'}
+          text={'Cadastrar usuário'}
           color={'secondaryColor'}
-        />
+          />
         <GlobalButton
           handleButton={() => {
             goBack();
           }}
           width={100}
-          type="transparent"
+          type="outline"
           text={'Cancelar'}
           color={'secondaryColor'}
-        />
+          />
       </S.Box>
     </S.Container>
   );
